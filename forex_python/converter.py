@@ -2,6 +2,8 @@ import os
 from decimal import Decimal
 import simplejson as json
 import requests
+import requests_cache
+requests_cache.install_cache('forex_rates', backend='sqlite', expire_after=86400)
 
 
 class RatesNotAvailableError(Exception):
