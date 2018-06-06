@@ -1,5 +1,6 @@
 import datetime
 from decimal import Decimal
+import unittest
 from unittest import TestCase
 from forex_python.converter import (get_rates, get_rate, convert, get_symbol,
                                     get_currency_name, RatesNotAvailableError,
@@ -187,3 +188,7 @@ class TestCurrencyName(TestCase):
 
     def test_with_invalid_currency_code(self):
         self.assertFalse(get_currency_name('XYZ'))
+
+
+if __name__ == '__main__':
+    unittest.main()

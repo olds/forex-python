@@ -30,7 +30,7 @@ class Common:
 
     def _get_date_string(self, date_obj):
         if date_obj is None:
-            return 'latest'
+            return 'latest/'
         date_str = date_obj.strftime('%Y-%m-%d')
         return date_str
 
