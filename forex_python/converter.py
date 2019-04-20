@@ -26,7 +26,7 @@ class Common:
         self._force_decimal = force_decimal
 
     def _source_url(self):
-        return "https://ratesapi.io/api/"
+        return "https://api.ratesapi.io/api/"
 
     def _get_date_string(self, date_obj):
         if date_obj is None:
@@ -49,7 +49,7 @@ class CurrencyRates(Common):
 
     def get_rates(self, base_cur, date_obj=None):
         date_str = self._get_date_string(date_obj)
-        payload = {'base': base_cur}
+        payload = {'base': base_cur, 'rtype': 'fpy'}
         source_url = self._source_url() + date_str
         response = requests.get(source_url, params=payload)
         if response.status_code == 200:
@@ -63,7 +63,7 @@ class CurrencyRates(Common):
                 return Decimal(1)
             return 1.
         date_str = self._get_date_string(date_obj)
-        payload = {'base': base_cur, 'symbols': dest_cur}
+        payload = {'base': base_cur, 'symbols': dest_cur, 'rtype': 'fpy'}
         source_url = self._source_url() + date_str
         response = requests.get(source_url, params=payload)
         if response.status_code == 200:
@@ -86,7 +86,7 @@ class CurrencyRates(Common):
             return float(amount)
 
         date_str = self._get_date_string(date_obj)
-        payload = {'base': base_cur, 'symbols': dest_cur}
+        payload = {'base': base_cur, 'symbols': dest_cur, 'rtype': 'fpy'}
         source_url = self._source_url() + date_str
         response = requests.get(source_url, params=payload)
         if response.status_code == 200:
